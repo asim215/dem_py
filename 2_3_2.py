@@ -1,23 +1,7 @@
 # Модификация программы о регулярных выражениях
 
 import re
-
-# Данные
-text = {
-    "gameover": "Игра окончена! До свидания.",
-}
-patterns = {
-    "выход": ".*выход|выйт.*",
-    "магазин": ".*(идт|напр|передв|пой(д|т)).*магазин.*",
-    "м_выбор": ".*(выбир|осматр|подой).*продукт.*",
-    "м_осм": ".*осм(о|а)тр.*",
-    "м_верн": ".*(вернут|улиц|выйт).*",
-    "м_взять": r".*(взять|возьму)\s(\w)+.*",
-    "м_взять_s": r"(взять|возьму)\s(\w)+",
-    "прогулка": ".*гулять.*",
-    "парк": ".*парк.*",
-    "супермаркет": ".*супермаркет.*",
-}
+import data_reg as d
 
 
 # В магазине
@@ -25,20 +9,20 @@ def shop():
     while True:
         ans = input("Вы в магазине. Что Вы будете делать? ").lower()
         # Вернуться
-        if re.fullmatch(patterns["м_верн"], ans):
+        if re.fullmatch(d.patterns["м_верн"], ans):
             print("Вы вышли из магазина")
             break
         # Осмотреться
-        elif re.fullmatch(patterns["м_осм"], ans):
+        elif re.fullmatch(d.patterns["м_осм"], ans):
             print("Вы видите много людей. "
                   "Сегодня выходной, поэтому многие закупаются "
                   "- предположили Вы.")
         # Выбор
-        elif re.fullmatch(patterns["м_выбор"], ans):
+        elif re.fullmatch(d.patterns["м_выбор"], ans):
             print("Вы видите хлеб, молоко и кофемашину. Мда, не густо ...")
         # Взять
-        elif re.fullmatch(patterns["м_взять"], ans):
-            matchs = re.search(patterns["м_взять_s"], ans)
+        elif re.fullmatch(d.patterns["м_взять"], ans):
+            matchs = re.search(d.patterns["м_взять_s"], ans)
             if matchs:
                 print(matchs[0])
                 if re.fullmatch(".*хлеб.*", matchs[0]):
@@ -62,18 +46,18 @@ def shop():
 end = False
 while not end:
     ans = input("Вы на улице. Ваши действия? ").lower()
-    if (re.fullmatch(patterns["выход"], ans)):
+    if (re.fullmatch(d.patterns["выход"], ans)):
         # Выход из программы
-        print(text["gameover"])
+        print(d.text["gameover"])
         end = True
-    elif (re.fullmatch(patterns["прогулка"], ans)):
+    elif (re.fullmatch(d.patterns["прогулка"], ans)):
         # На прогулке
         ans = input("Куда именно? (в парк, в супермаркет) ")
-        if (re.fullmatch(patterns["парк"], ans)):
+        if (re.fullmatch(d.patterns["парк"], ans)):
             print("Вы в парке")
-        elif (re.fullmatch(patterns["супермаркет"], ans)):
+        elif (re.fullmatch(d.patterns["супермаркет"], ans)):
             print("Вы в супермаркете")
         else:
             print("Вы не знаете куда идти")
-    elif (re.fullmatch(patterns["магазин"], ans)):
+    elif (re.fullmatch(d.patterns["магазин"], ans)):
         shop()
