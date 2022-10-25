@@ -1,0 +1,6 @@
+[submodule "regelamiptpizzabot_3_4"]
+	path = regelamiptpizzabot_3_4
+	url = ./regelamiptpizzabot_3_4
+[submodule "3_4_pr"]
+	path = 3_4_pr
+	url = ./3_4_pr
