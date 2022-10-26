@@ -17,9 +17,21 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeybo
 from aiogram.contrib.fsm_storage.files import JSONStorage
 
 # from messages import get_message
-from settings import API_TOKEN
+# from settings import API_TOKEN
+from settings import API_TOKEN, NEED_SAVE_LOGS_TO_FILE
 
-logging.basicConfig(level=logging.DEBUG)
+
+if NEED_SAVE_LOGS_TO_FILE:
+    logging.basicConfig(filename="pizzabot.log",
+                        filemode='a',
+                        format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
+                        datefmt='%H:%M:%S',
+                        level=logging.DEBUG)
+else:
+    logging.basicConfig(level=logging.DEBUG)
+
+
+# logging.basicConfig(level=logging.DEBUG)
 
 if "https_proxy" in os.environ:
     proxy_url = os.environ["https_proxy"]
