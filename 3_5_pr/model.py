@@ -13,11 +13,11 @@ morph = MorphAnalyzer()
 path = "data/"
 # загружаем сохраненные модель и векторизатор
 # -- Модель SVC
-model = pickle.load(open(path + "model_svc.sav", 'rb'))
-vectorizer: TfidfVectorizer = pickle.load(open(path + "vec_svc.pk", 'rb'))
+# model = pickle.load(open(path + "model_svc.sav", 'rb'))
+# vectorizer: TfidfVectorizer = pickle.load(open(path + "vec_svc.pk", 'rb'))
 # -- Модель KNN
-# model = pickle.load(open(path + "model_knn.sav", 'rb'))
-# vectorizer: TfidfVectorizer = pickle.load(open(path + "vec_knn.pk", 'rb'))
+model = pickle.load(open(path + "model_knn.sav", 'rb'))
+vectorizer: TfidfVectorizer = pickle.load(open(path + "vec_knn.pk", 'rb'))
 # -- Модель LogReg
 # model = pickle.load(open(path + "model_logreg.sav", 'rb'))
 # vectorizer: TfidfVectorizer = pickle.load(open(path + "vec_logreg.pk", 'rb'))
